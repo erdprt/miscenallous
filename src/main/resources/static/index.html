@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JSONPlaceholder Explorer</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="container header-inner">
+        <h1 class="app-title">JSONPlaceholder Explorer</h1>
+        <nav class="category-nav" aria-label="Categories">
+          <button class="category-btn" data-category="posts" aria-current="page">Posts</button>
+          <button class="category-btn" data-category="comments">Comments</button>
+          <button class="category-btn" data-category="albums">Albums</button>
+          <button class="category-btn" data-category="photos">Photos</button>
+          <button class="category-btn" data-category="todos">Todos</button>
+          <button class="category-btn" data-category="users">Users</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container main-content">
+      <section class="controls" aria-label="Controls">
+        <div class="control-group">
+          <label for="searchInput">Search</label>
+          <input id="searchInput" type="search" placeholder="Type to search..." autocomplete="off" />
+        </div>
+        <div class="control-group">
+          <label for="pageSize">Page size</label>
+          <select id="pageSize">
+            <option value="10" selected>10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+      </section>
+
+      <section id="results" class="results" aria-live="polite" aria-busy="false"></section>
+
+      <nav id="pagination" class="pagination" aria-label="Pagination"></nav>
+    </main>
+
+    <div id="loadingOverlay" class="loading-overlay" hidden>
+      <div class="spinner" role="status" aria-live="polite" aria-label="Loading"></div>
+    </div>
+
+    <footer class="app-footer">
+      <div class="container footer-inner">
+        <small>
+          Data from <a href="https://jsonplaceholder.typicode.com/" target="_blank" rel="noreferrer noopener">JSONPlaceholder</a>
+        </small>
+      </div>
+    </footer>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>
