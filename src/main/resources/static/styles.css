@@ -1,0 +1,188 @@
+:root {
+  --bg: #0b1020;
+  --panel: #121a33;
+  --panel-2: #0f1730;
+  --text: #eaf0ff;
+  --muted: #a7b0c7;
+  --brand: #4f83ff;
+  --brand-2: #3a6de6;
+  --accent: #22c55e;
+  --danger: #ef4444;
+  --border: #243154;
+  --shadow: rgba(0, 0, 0, 0.35);
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, var(--bg), #0c1226 40%, #0b1020 100%);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.container {
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  background: rgba(11, 16, 32, 0.8);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.category-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.category-btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.category-btn:hover { transform: translateY(-1px); }
+.category-btn[aria-current="page"] {
+  background: linear-gradient(180deg, var(--brand), var(--brand-2));
+  border-color: transparent;
+}
+
+.main-content { padding: 20px 0 36px; }
+
+.controls {
+  display: flex;
+  align-items: end;
+  gap: 16px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 16px;
+  box-shadow: 0 6px 16px var(--shadow);
+}
+
+.control-group { display: grid; gap: 6px; }
+.control-group label { color: var(--muted); font-size: 12px; }
+
+#searchInput, select#pageSize {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 10px;
+  min-width: 220px;
+  outline: none;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+}
+
+.card {
+  grid-column: span 12;
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 8px 18px var(--shadow);
+}
+
+.card h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+
+.card .muted { color: var(--muted); font-size: 12px; }
+.card .kvs { display: grid; gap: 6px; }
+.card .kv { display: grid; grid-template-columns: 140px 1fr; gap: 10px; }
+.card .kv .key { color: var(--muted); }
+
+/* Photos grid */
+.results.photos .card { padding: 0; overflow: hidden; }
+.photo-thumb { width: 100%; height: 220px; object-fit: cover; display: block; }
+.photo-meta { padding: 12px 14px; }
+
+/* Responsive columns */
+@media (min-width: 520px) {
+  .card { grid-column: span 6; }
+}
+@media (min-width: 840px) {
+  .card { grid-column: span 4; }
+}
+@media (min-width: 1080px) {
+  .card { grid-column: span 3; }
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.page-btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.page-btn[aria-current="page"] {
+  background: var(--brand);
+  border-color: transparent;
+}
+.page-btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 12, 25, 0.5);
+  display: grid;
+  place-items: center;
+}
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(255, 255, 255, 0.25);
+  border-top-color: var(--brand);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.app-footer { border-top: 1px solid var(--border); margin-top: 24px; }
+.footer-inner { padding: 14px 0; color: var(--muted); }
+.footer-inner a { color: var(--text); }
